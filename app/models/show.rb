@@ -16,7 +16,7 @@ class Show
 
 	def find_seasons
 		@episodes = parse['_embedded']['episodes']
-		@episodes.group_by{|h| h['season']}.values
+		@episodes.group_by{|k| k['season']}.values
 	end
 
 	def parse

@@ -6,8 +6,14 @@ class EpisodesController < ApplicationController
 
   def tv
   	@new = Show.new
-  	@json = @new.parse
+  	@json = @new.find_seasons
   	render json: @json
+  	puts "#{@json.count} Seasons"
+  	@episodes = 0
+  	@json.each do |season|
+		@episodes += season.count
+	end
+	puts "#{@episodes} episodes"
   end
 
 end
