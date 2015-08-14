@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'episodes#home'
   get 'episodes/tv' => 'episodes/tv'
-
+  get 'episodes/tweets' => 'episodes#tweets'
+  get 'episodes/test' => 'episodes#test'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,16 @@
+<div class= 'test' ng-controller = 'TweetCtrl as tweet'>
+
+<div class="container">
+	<form name="searchForm" ng-submit="test();" novalidate>
+		<input ng-model='search' type="text">
+		<input type="submit">
+	</form>
+</div>
+
+<button ng-click="find_tweets()">find tweets!</button>
+<button ng-click="this.test()">test!</button>
+
+<div ng-repeat='n in json'>
+	{{n}}
+</div>
+</div>

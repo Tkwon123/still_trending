@@ -2,18 +2,45 @@
 <p>Find me in app/views/episodes/index.html.erb</p>
 	
 
+<p><%= @tweet.class %></p>
+
+<button ng-click = "find_seasons()">find</button>
+<div class="container">
+	
+
 
 <div class="row">
+	<div class="col s3 teal lighten-2">
+		<table class="hoverable">
+			<tbody>
+				<tr ng-repeat="(k,v) in json" > 
+					<td ng-click="setSeason(k)">Season: {{(k-0)+1}}</td>
+				</tr>
+			</tbody>
+		</table>
 
-  <div class="col s3 teal lighten-2">
-  	<p>{{seasons.test}}</p>
-    <!-- Grey navigation panel -->
-  </div>
 
-  <div class="col s9 teal">
-  	<p>main content</p>
+	<!-- Grey navigation panel -->
+	</div>
+
+	<div class="col s9 teal">
     <!-- Teal page content  -->
-  </div>
 
+		<ul ng-repeat="episode in currentSeason">
+			<div class="card">
+				<div class="card-content">
+					<span class="card-title activator grey-text text-darken-4">Episode: {{episode.number}} | "{{episode.name}}" | Airdate: {{episode.airdate | date}}
+					<p ng-click="setEpisode(episode.airdate)"><a>This is a link</a></p>
+				</div>
+				<div class="card-reveal">
+					<span class="card-title grey-text text-darken-4">Summary<i class="material-icons right">close</i></span>
+					<p>{{episode.summary}}</p>
+				</div>
+			</div>
+		</ul>
+
+
+	</div>
 </div>
 
+</div>
