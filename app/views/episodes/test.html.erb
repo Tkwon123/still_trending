@@ -1,5 +1,13 @@
 <div class= 'test' ng-controller = 'TweetCtrl as tweet'>
 
+<ul>
+	<%= @tweets.each do |x| %> 
+		<li><%= x %></li>
+	<% end %>
+</ul>
+
+
+
 <div class="container">
 	<form name="searchForm" ng-submit="test();" novalidate>
 		<input ng-model='search' type="text">
@@ -13,4 +21,5 @@
 <div ng-repeat='n in json'>
 	{{n}}
 </div>
+
 </div>

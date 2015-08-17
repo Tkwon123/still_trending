@@ -1,7 +1,6 @@
 var tv = angular.module('tv', []);
 	
 tv.controller('SeasonsCtrl', function($scope, $http){
-		//data 
 		$scope.json = null;
 		$scope.currentSeason = {};
 		$scope.find_seasons = function(){
