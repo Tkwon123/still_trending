@@ -6,17 +6,12 @@
 	<input ng-change="increment()" ng-model='search' name='search' type="text">
 </div>
 
-<button ng-click="find_tweets()">find tweets!</button>
+<button ng-click="find_tweets('scrubs', '2015-02-25', '2015-02-26')">find tweets!</button>
 <button ng-click="this.test()">test!</button>
 
-<div ng-repeat='n in json'>
+<div ng-repeat='n in tweets'>
 	{{n}}
 </div>
 
 </div>
 
-<ul>
-	<%= @tweets.each do |x| %> 
-		<li><%= x %></li>
-	<% end %>
-</ul>

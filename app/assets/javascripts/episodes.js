@@ -60,9 +60,12 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout){
 
 	$scope.search = {data:'hi'};
 	$scope.tweets = [];
-	$scope.find_tweets = function(){
-		$http.get('/episodes/tweets').
-			success(function(data){
+	$scope.find_tweets = function(show, start, end){
+		$http({
+			method: "get",
+			url: '/episodes/tweets',
+			params: {show: show, start_date: start, end_date: end}})
+			.success(function(data){
 				$scope.tweets = data;
 			})
 			.error(function(data){

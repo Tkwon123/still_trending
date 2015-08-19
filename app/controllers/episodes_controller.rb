@@ -13,36 +13,24 @@ class EpisodesController < ApplicationController
   	debug_tv #print the number of episodes/seasons of show
   end
 
-  def tweets
-  	@client = Twitter::REST::Client.new do |config|
-		config.consumer_key        = "2bUsByBlrGdWYjtpqC65VTl4F"
-		config.consumer_secret     = "LQNEmVYI33VcfTWo9cPjKOqJLSebGeOdWKmRE3nkQBpaIDbcFa"
-		config.access_token        = "1568771118-KA4PSZdKpflNHofKhQjAH49Bt5jezWl82CvMEzN"
-		config.access_token_secret = "dfvKX4o7mRtb3uvlh9P9T55EgQEZWAr1lr5Sm5KzAKvHM"
-	end
+def test
 
-	tweets = @client.search('from:justinbieber until:2015-08-13')
-	@tweets = tweets.take(20).collect do |tweet|
-	  "#{tweet.user.screen_name}: #{tweet.text} : #{tweet.created_at}"
-	end
+end
 
-	render json: @tweets
-
-  end
-
-def test(options = {})
-	@show = options[:show]
-	@start_date = options[:start_date]
-	@end_date = options[:end_date]
+def tweets(options = {})
+	@show =  params[:show] || 'parksandrecreation'
+	@start_date = params[:start_date] || '2015-02-25'
+	@end_date = params[:end_date] || '2015-02-26'
 
 	#need to edit out this url
-	@url = 'https://twitter.com/search?q=%23parksandrecreation%20since%3A2015-02-25%20until%3A2015-02-26&src=typd&lang=en'
+	@url = "https://twitter.com/search?q=%#{@show}%20since%3A#{@start_date}%20until%3A#{@end_date}&src=typd&lang=en"
 
 	mechanize = Mechanize.new
 	page = mechanize.get(@url)	
 	@title = page.title
 	tweets = page.parser.css('div.tweet-text')
 	@tweets = tweets.map(&:text)
+	render json: @tweets 
 end
 
 private
