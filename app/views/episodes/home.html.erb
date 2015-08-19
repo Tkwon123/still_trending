@@ -1,10 +1,14 @@
-<h1>Episodes#index</h1>
+<h1>TVitter</h1>
 <p>Find me in app/views/episodes/index.html.erb</p>
 	
+<div class="container">
+	<form name="searchForm" ng-submit="find_seasons(search);" novalidate>
+		<input ng-model='search' name='search' type="text">
+		<input type="submit">
+	</form>
+</div>
 
-<p><%= @tweet.class %></p>
 
-<button ng-click = "find_seasons()">find</button>
 <div class="container">
 	
 
@@ -26,14 +30,35 @@
 	<div class="col s9 teal">
     <!-- Teal page content  -->
 
-		<ul ng-repeat="episode in currentSeason">
+		<ul ng-repeat="episode in currentSeason" ng-controller = 'TweetCtrl as tweet'>
 			<div class="card">
 				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">Episode: {{episode.number}} | "{{episode.name}}" | Airdate: {{episode.airdate | date}}
-					<p ng-click="setEpisode(episode.airdate)"><a>This is a link</a></p>
+					<div class="row">
+						<div class="col s9">
+							<span class="card-title activator grey-text text-darken-4">Episode: {{episode.number}} | "{{episode.name}}" | Airdate: {{episode.airdate | date}}
+						</div>
+						<div class="col s3">
+							<p ng-hide="tweets.length" ng-click="find_tweets()" class="right-align">
+								<a class="waves-effect waves-teal btn-flat"> Listen in!  </a><i class="small material-icons">volume_up</i>
+							</p>
+							<p ng-show="tweets.length" ng-click="empty_tweets()" class="right-align">
+								<a class="waves-effect waves-teal btn-flat"> Shh...  </a><i class="small material-icons">volume_off</i>
+							</p>					
+						</div>
+					</div>
+
+
+
+
 				</div>
+				<ul class="card-action">
+					<li ng-repeat='tweet in tweets'>{{tweet}}</li>
+				</ul>
+
 				<div class="card-reveal">
 					<span class="card-title grey-text text-darken-4">Summary<i class="material-icons right">close</i></span>
+						<p ng-if="episode.summary">{{episode.summary}}</p>
+						<p ng-if="!episode.summary"> Whoops, doesn't seem like a summary was provided by my makers :(</p>
 					<p>{{episode.summary}}</p>
 				</div>
 			</div>

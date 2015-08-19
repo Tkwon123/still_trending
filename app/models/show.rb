@@ -4,7 +4,7 @@ require 'json'
 class Show
 	attr_accessor :root
 
-	def initialize(show = 'breaking bad')
+	def initialize(show = 'parks and recreation')
 		@show = show
 		@search = @show.gsub(' ', '+')
 		@root = "http://api.tvmaze.com/singlesearch/shows?q=" + @search + "&embed=episodes"

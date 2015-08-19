@@ -7,7 +7,7 @@ class EpisodesController < ApplicationController
   end
 
   def tv
-  	@new = Show.new
+  	@new = Show.new(params[:search])
   	@json = @new.find_seasons
   	render json: @json
   	debug_tv #print the number of episodes/seasons of show
@@ -36,14 +36,13 @@ def test(options = {})
 	@end_date = options[:end_date]
 
 	#need to edit out this url
-	@url = 'https://twitter.com/search?q=%23breakingbad%20since%3A2013-09-30%20until%3A2013-10-01&src=typd&lang=en'
+	@url = 'https://twitter.com/search?q=%23parksandrecreation%20since%3A2015-02-25%20until%3A2015-02-26&src=typd&lang=en'
 
 	mechanize = Mechanize.new
 	page = mechanize.get(@url)	
 	@title = page.title
 	tweets = page.parser.css('div.tweet-text')
 	@tweets = tweets.map(&:text)
-	binding.pry
 end
 
 private
