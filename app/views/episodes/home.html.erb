@@ -8,7 +8,7 @@
 
 <div class="container">
 
-<div class="row">
+<div class="row" id="seasons">
 	<div class="col s3 teal lighten-2">
 		<table class="hoverable">
 			<tbody>
@@ -22,7 +22,7 @@
 	<!-- Grey navigation panel -->
 	</div>
 
-	<div class="col s9 teal">
+	<div class="col s9 teal" id="episodes">
     <!-- Teal page content  -->
 
 		<ul ng-repeat="episode in currentSeason" ng-controller = 'TweetCtrl as tweet'>
@@ -33,16 +33,17 @@
 							<span class="card-title activator grey-text text-darken-4">Episode: {{episode.number}} | "{{episode.name}}" | Airdate: {{episode.airdate | date}}
 						</div>
 						<div class="col s3">
-							<p ng-hide="tweets.length" ng-click="find_tweets('scrubs', '2015-02-25', '2015-02-26')" class="right-align">
+
+							<p ng-hide="tweets.length" ng-click="setEpisode(episode.airdate)" class="right-align">
 								<a class="waves-effect waves-teal btn-flat"> Listen in!  </a><i class="small material-icons">volume_up</i>
 							</p>
+
 							<p ng-show="tweets.length" ng-click="empty_tweets()" class="right-align">
 								<a class="waves-effect waves-teal btn-flat"> Shh...  </a><i class="small material-icons">volume_off</i>
-							</p>					
+							</p>			
+
 						</div>
 					</div>
-
-
 
 
 				</div>

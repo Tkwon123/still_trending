@@ -1,15 +1,23 @@
 var tv = angular.module('tv', []);
-	
-tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval){
+
+/*$(function(){
+	$('#seasons').click(function(){
+		alert('hi');
+	});
+});*/
+
+
+
+tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootScope){
 
 		$scope.json = {};
 		$scope.currentSeason = {};
 		var userSearch = {};
+
 		$scope.setSearch = function(search){
 			userSearch = search;
-			alert(userSearch);
 		};
-
+/*
 		$scope.timeout = function(){
 			$timeout(function(){
 				$scope.hello();
@@ -24,13 +32,12 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval){
 						while(counter > 0){console.log(counter--);}
 					},1000);
 			}
-		};
-
-		$scope.hello = function(){alert('hi');};
+		};*/
 
 		$scope.test = function(){alert($scope.search);};
 
 		$scope.find_seasons = function(show){
+			$rootScope.show = show;
 			$http({
 				method: 'get',
 				url: '/episodes/tv',
@@ -42,9 +49,6 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval){
 			});
 		};
 
-		$scope.alert = function(){
-			alert('hi!');
-		};
 
 		$scope.setSeason = function(season){
 			$scope.currentSeason = $scope.json[season];
@@ -56,7 +60,7 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval){
 
 	});
 
-tv.controller('TweetCtrl', function($scope,$http,$timeout){
+tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
 
 	$scope.search = {data:'hi'};
 	$scope.tweets = [];
@@ -67,6 +71,7 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout){
 			params: {show: show, start_date: start, end_date: end}})
 			.success(function(data){
 				$scope.tweets = data;
+				alert('success');
 			})
 			.error(function(data){
 				alert(data);
@@ -82,7 +87,24 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout){
 		for(var i=0; i<array.length;i++){
 			console.log(array[i]);
 		}
+	};
 
+	$scope.setEpisode = function(airDate){
+
+		var date = airDate;
+		//Need to reorganize date into YYYY-MM-DD for the Twitter API
+		date = date.split('-');
+		date = {year: parseInt(date[0]), month: parseInt(date[1]), day: parseInt(date[2])};
+		//Setting +1 and +2 days after airdate to show relevent tweets
+		$scope.start_date = date.year + '-' + date.month + '-' + (date.day+1);
+		$scope.end_date = date.year + '-' + date.month + '-' + (date.day+2);
+		alert($scope.start_date);
+		$scope.setTweets();
+	};
+
+	$scope.setTweets = function(){
+		$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);
+		/*$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);*/
 	};
 });
 
