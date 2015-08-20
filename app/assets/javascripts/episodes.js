@@ -1,8 +1,8 @@
 var tv = angular.module('tv', []);
 
 /*$(function(){
-	$('#seasons').click(function(){
-		alert('hi');
+	$('#nyan').click(function(){
+		$('body').addClass('nyan');
 	});
 });*/
 
@@ -17,56 +17,58 @@ tv.filter('clean', function(){
 	};
 });
 
-
 tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootScope){
 
-		$scope.json = {};
-		$scope.currentSeason = {};
-		var userSearch = {};
+	//NYAN!!!
+	$scope.nyan = false;
+	$scope.changeNyan =  function(){
+		$scope.nyan = $scope.nyan === false ? true: false;
 
-		$scope.setSearch = function(search){
-			userSearch = search;
-		};
-/*
-		$scope.timeout = function(){
-			$timeout(function(){
-				$scope.hello();
-			}, 1000);
-		};
+	};
 
-		var counter = 3;
+	$scope.json = {};
+	$scope.currentSeason = {};
+	var userSearch = {};
 
-		$scope.increment = function(){
-			if (counter === 0){
-				$interval(function(){
-						while(counter > 0){console.log(counter--);}
-					},1000);
-			}
-		};*/
-/*
-		$scope.clean = function(text){
-			return text.replace(/<p>|<\/p>/g,"");
-		};
-*/
-		$scope.find_seasons = function(show){
-			$rootScope.show = show.replace(/\s/g, '');
-			$http({
-				method: 'get',
-				url: '/episodes/tv',
-				params: {search: show},
-				timeout: 3000
-			})
-				.success(function(data){
-					$scope.json = data;
-			});
-		};
+	$scope.setSearch = function(search){
+		userSearch = search;
+	};
+
+	$scope.find_seasons = function(show){
+		$rootScope.show = show.replace(/\s/g, '');
+		$http({
+			method: 'get',
+			url: '/episodes/tv',
+			params: {search: show},
+			timeout: 3000
+		})
+			.success(function(data){
+				$scope.json = data;
+		});
+	};
 
 
-		$scope.setSeason = function(season){
-			$scope.currentSeason = $scope.json[season];
-		};
+	$scope.setSeason = function(season){
+		$scope.currentSeason = $scope.json[season];
+	};
 
-	});
+	$scope.timeout = function(){
+		$timeout(function(){
+			alert('hello');
+		}, 1000);
+	};
+
+	var counter = 3;
+
+	$scope.increment = function(){
+		if (counter === 0){
+			$interval(function(){
+					while(counter > 0){console.log(counter--);}
+				},1000);
+		}
+	};
+
+});
 
 tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
 
@@ -81,7 +83,7 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
 				$scope.tweets = data;
 				if ($scope.tweets.length) {
 					} else {
-					$scope.tweets = ["HM. I'm not sensing any chatter in the Twitter-sphere-- did things even trend back then?"];
+					$scope.tweets = ["HM. I'm not sensing any chatter in the 'Twitter-sphere'... Did things even trend back then?"];
 					}
 				})
 			.error(function(data){

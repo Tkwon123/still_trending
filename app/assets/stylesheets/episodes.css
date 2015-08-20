@@ -1,5 +1,5 @@
-/* 
-body {
+ 
+.nyan {
 	background-image: url('nyan.jpg');
     background-size: cover;
     position: fixed;
@@ -8,9 +8,14 @@ body {
     right: 0;
     bottom: 0;
     z-index: -1;
-} */
+}
 
 .seasons {
 	text-transform: uppercase;
 	text-align: center;
+}
+
+#image {
+    background-image: url('nyan.jpg');
+    background-size: cover;
 }
