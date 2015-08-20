@@ -30,7 +30,7 @@
 				<div class="card-content">
 					<div class="row">
 						<div class="col s9">
-							<span class="card-title activator grey-text text-darken-4">Episode: {{episode.number}} | "{{episode.name}}" | Airdate: {{episode.airdate | date}}
+							<span class="card-title activator grey-text text-darken-4" ng-click="test(episode.summary);">Episode: {{episode.number}} | "{{episode.name}}" | Airdate: {{episode.airdate | date}}
 						</div>
 						<div class="col s3">
 
@@ -47,15 +47,14 @@
 
 
 				</div>
-				<ul class="card-action">
-					<li ng-repeat='tweet in tweets'>+ {{tweet}}</li>
+				<ul class="card-action collection">
+					<li ng-repeat='tweet in tweets' class="collection-item">{{tweet}}</li>
 				</ul>
 
-				<div class="card-reveal">
+				<div class="card-reveal" ng-click="test();">
 					<span class="card-title grey-text text-darken-4">Summary<i class="material-icons right">close</i></span>
-						<p ng-if="episode.summary">{{episode.summary}}</p>
+						<p ng-if="episode.summary">{{episode.summary | clean }}</p>
 						<p ng-if="!episode.summary"> Whoops, doesn't seem like a summary was provided by my makers :(</p>
-					<p>{{episode.summary}}</p>
 				</div>
 			</div>
 		</ul>

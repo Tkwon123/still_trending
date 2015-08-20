@@ -6,6 +6,16 @@ var tv = angular.module('tv', []);
 	});
 });*/
 
+tv.filter('clean', function(){
+	return function(input){
+
+		if (typeof input == 'string') {
+			return input.replace(/<p>|<\/p>/g,"");
+		} else {
+			console.log(input);
+		}
+	};
+});
 
 
 tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootScope){
@@ -33,9 +43,11 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootS
 					},1000);
 			}
 		};*/
-
-		$scope.test = function(){alert($scope.search);};
-
+/*
+		$scope.clean = function(text){
+			return text.replace(/<p>|<\/p>/g,"");
+		};
+*/
 		$scope.find_seasons = function(show){
 			$rootScope.show = show;
 			$http({
@@ -54,10 +66,6 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootS
 			$scope.currentSeason = $scope.json[season];
 		};
 
-		$scope.setEpisode = function(episode){
-			alert(episode);
-		};
-
 	});
 
 tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
@@ -71,7 +79,10 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
 			params: {show: show, start_date: start, end_date: end}})
 			.success(function(data){
 				$scope.tweets = data;
-				alert('success');
+				if ($scope.tweets.length) {
+					} else {
+					$scope.tweets = ["HM. I'm not sensing any chatter in the Twitter-sphere-- did things even trend back then?"];
+					}
 			})
 			.error(function(data){
 				alert(data);
@@ -98,13 +109,11 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
 		//Setting +1 and +2 days after airdate to show relevent tweets
 		$scope.start_date = date.year + '-' + date.month + '-' + (date.day+1);
 		$scope.end_date = date.year + '-' + date.month + '-' + (date.day+2);
-		alert($scope.start_date);
 		$scope.setTweets();
 	};
 
 	$scope.setTweets = function(){
 		$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);
-		/*$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);*/
 	};
 });
 
