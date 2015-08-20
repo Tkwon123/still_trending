@@ -23,7 +23,7 @@ def tweets(options = {})
 	@end_date = params[:end_date] || '2015-02-26'
 
 	#need to edit out this url
-	@url = "https://twitter.com/search?q=%#{@show}%20since%3A#{@start_date}%20until%3A#{@end_date}&src=typd&lang=en"
+	@url = "https://twitter.com/search?q=%23#{@show}%20since%3A#{@start_date}%20until%3A#{@end_date}&src=typd&lang=en"
 
 	mechanize = Mechanize.new
 	page = mechanize.get(@url)	

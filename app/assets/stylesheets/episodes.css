@@ -9,3 +9,8 @@ body {
     bottom: 0;
     z-index: -1;
 } */
+
+.seasons {
+	text-transform: uppercase;
+	text-align: center;
+}

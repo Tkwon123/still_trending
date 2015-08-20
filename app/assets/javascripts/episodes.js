@@ -49,7 +49,7 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootS
 		};
 */
 		$scope.find_seasons = function(show){
-			$rootScope.show = show;
+			$rootScope.show = show.replace(/\s/g, '');
 			$http({
 				method: 'get',
 				url: '/episodes/tv',
@@ -83,9 +83,9 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
 					} else {
 					$scope.tweets = ["HM. I'm not sensing any chatter in the Twitter-sphere-- did things even trend back then?"];
 					}
-			})
+				})
 			.error(function(data){
-				alert(data);
+				alert("something looks like it went wrong here...");
 			});
 		};
 
