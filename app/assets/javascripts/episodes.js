@@ -25,7 +25,7 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootS
 		$scope.nyan = $scope.nyan === false ? true: false;
 
 	};
-
+	$scope.search = '';
 	$scope.json = {};
 	$scope.currentSeason = {};
 	var userSearch = {};
@@ -33,6 +33,8 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootS
 	$scope.setSearch = function(search){
 		userSearch = search;
 	};
+
+
 
 	$scope.find_seasons = function(show){
 		$rootScope.show = show.replace(/\s/g, '');
@@ -52,20 +54,51 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootS
 		$scope.currentSeason = $scope.json[season];
 	};
 
+
+	var evaluate = function(){
+		if (counter === 0) {
+			$interval.cancel(promise);
+			$scope.find_seasons($scope.search);
+			counter = 1;
+		} else {
+			tick();
+		}
+	};
+
+	var tick = function(){
+		counter -= 1;
+		console.log(counter);
+	};
+
+
+	var counter = 1;
+	var counting = false;
+	var promise;
+	
+
+	$scope.setTimer = function(){
+		$scope.stopTimer();
+		promise = $interval(function(){evaluate();}, 500);
+	};
+
+	$scope.stopTimer = function(){
+		$interval.cancel(promise);
+	};
+
+	$scope.timerAction = function(){
+		if (counter === 0) {
+			alert('hello there!');
+		} else {
+			counter = counter--;
+			console.log(counter);
+		}
+	};
+
+
 	$scope.timeout = function(){
 		$timeout(function(){
 			alert('hello');
 		}, 1000);
-	};
-
-	var counter = 3;
-
-	$scope.increment = function(){
-		if (counter === 0){
-			$interval(function(){
-					while(counter > 0){console.log(counter--);}
-				},1000);
-		}
 	};
 
 });

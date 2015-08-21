@@ -1,12 +1,8 @@
 <div ng-hide='nyan'> 
 
 <div class="container">
-	<form name="searchForm" ng-submit="find_seasons(search);" novalidate>
-		<input ng-model='search' name='search' type="text">
-		<input type="submit">
-	</form>
+		<input name='search' type="text" ng-model="search" ng-change="setTimer()" >
 </div>
-
 
 <div class="container">
 
