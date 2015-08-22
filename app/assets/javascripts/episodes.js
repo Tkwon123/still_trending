@@ -12,7 +12,7 @@ tv.filter('clean', function(){
 });
 
 tv.controller('SeasonsCtrl', ['$scope', '$http', '$timeout', '$interval', '$rootScope', function($scope, $http, $timeout, $interval, $rootScope){
-	//NYAN!!!
+		//NYAN!!!
 	$scope.nyan = false;
 	$scope.changeNyan =  function(){
 		$scope.nyan = $scope.nyan === false ? true: false;
