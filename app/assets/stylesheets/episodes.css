@@ -9,6 +9,8 @@
     bottom: 0;
     z-index: -1;
 }
+    
+
 
 .brand-logo{
     padding-left: 20px;
@@ -28,6 +30,11 @@
     font-family: 'Droid Serif', serif;
 }
 
+#logo {
+    font-weight: bold;
+    padding-left: 20px;
+}
+
 #search-field {
     font-size: 90%;
     width: 400px;
@@ -35,4 +42,18 @@
 
 #episode-header {
     font-size: 100%;
+}
+
+#season-container{
+    height: inherit;
+    color: white;
+    font-weight: bold;
+}
+
+body {
+    height: 100%;
+}
+
+.row {
+    height: 100%;
 }

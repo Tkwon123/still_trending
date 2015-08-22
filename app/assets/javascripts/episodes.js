@@ -45,7 +45,17 @@ tv.controller('SeasonsCtrl', ['$scope', '$http', '$timeout', '$interval', '$root
 
 	$scope.setSeason = function(season){
 		$scope.currentSeason = $scope.json[season];
+		/*$('#episode-container').promise().done(
+			function(){alert($('#episode-container').height());}
+		);*/
+		$timeout(function(){
+			$('#season-container').height($('#episode-container').height());
+		},100);
+
+
 	};
+
+
 
 
 	var evaluate = function(){
@@ -129,7 +139,7 @@ tv.controller('TweetCtrl', ['$scope', '$http', '$timeout', '$rootScope', functio
 	};
 
 	$scope.setEpisode = function(airDate){
-
+		$scope.tweets = ["Loading..."];
 		var date = airDate;
 		//Need to reor <i class="material-icons prefix">account_circle</i>ganize date into YYYY-MM-DD for the Twitter API
 		date = date.split('-');
