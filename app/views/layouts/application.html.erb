@@ -6,20 +6,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "alert alert-info" %>
 <% end %>
 
-<nav class="teal darken-3">
-	<div class="nav-wrapper">
-		<a href="#" class="brand-logo center">Still Trending <i class="material-icons right">chat_bubble_outline</i> </a> 
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a id='nyan' ng-click='changeNyan()'>NYAN</a></li>
-		</ul>
-	</div>
-</nav>
+
 
 
 <body ng-controller = 'SeasonsCtrl as seasons' class="teal lighten-5" ng-class="{'nyan': nyan}">

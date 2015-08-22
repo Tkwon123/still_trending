@@ -19,3 +19,16 @@
     background-image: url('nyan.jpg');
     background-size: cover;
 }
+
+#title {
+    font-family: 'Droid Serif', serif;
+}
+
+#search-field {
+    font-size: 90%;
+    width: 400px;
+}
+
+#episode-header {
+    font-size: 100%;
+}

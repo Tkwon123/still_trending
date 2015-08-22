@@ -1,13 +1,43 @@
+<nav class="teal darken-3" id='title'>
+	<div class="nav-wrapper">
+		<a href="#" class="brand-logo center">Still Trending <i class="material-icons right">chat_bubble_outline</i> </a> 
+		<ul id="nav-mobile" class="right">
+			<li><a id='nyan' ng-click='changeNyan()'>TOGGLE NYAN!</a></li>
+		</ul>
+		
+		<div class="right">
+			<form>
+				<div class="input-field">
+					
+				<input name='search' class="field" id='search-field' type="search" ng-model="search" ng-change="setTimer()" placeholder="  (search TV series)">
+
+				<label for="search-field">
+					<i class="mdi-action-search prefix"></i>
+				</label>
+				</div>
+			
+			</form>
+		</div>
+		
+	
+
+	</div>	
+</nav>
+
+
 <div ng-hide='nyan'> 
 
+
 <div class="container">
-		<input name='search' type="text" ng-model="search" ng-change="setTimer()" >
+
+<div class="row teal lighten-2">
+	<p>
+		
+	</p>
 </div>
 
-<div class="container">
-
 <div class="row" id="seasons">
-	<div class="col s3 teal lighten-2">
+	<div class="col s3 teal">
 		<table class="hoverable">
 			<tbody>
 				<tr ng-repeat="(k,v) in json" > 
@@ -15,20 +45,18 @@
 				</tr>
 			</tbody>
 		</table>
-
-
-	<!-- Grey navigation panel -->
 	</div>
 
 	<div class="col s9 teal" id="episodes">
-    <!-- Teal page content  -->
-
 		<ul ng-repeat="episode in currentSeason" ng-controller = 'TweetCtrl as tweet'>
 			<div class="card">
 				<div class="card-content">
 					<div class="row">
 						<div class="col s9">
-							<span class="card-title activator grey-text text-darken-4" ng-click="test(episode.summary);">Episode: {{episode.number}} | "{{episode.name}}" | Airdate: {{episode.airdate | date}}
+							<span class="card-title activator grey-text text-darken-4" ng-click="test(episode.summary);">Episode: {{episode.number}} | "{{episode.name}}"  
+							<br>
+							Airdate: {{episode.airdate | date}}
+							</span>
 						</div>
 						<div class="col s3">
 
@@ -45,7 +73,7 @@
 
 
 				</div>
-				<ul class="card-action collection">
+				<ul ng-show='tweets.length > 0' class="card-action collection">
 					<li ng-repeat='tweet in tweets' class="collection-item">{{tweet}}</li>
 				</ul>
 

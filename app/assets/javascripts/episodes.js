@@ -98,7 +98,7 @@ tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootS
 	$scope.timeout = function(){
 		$timeout(function(){
 			alert('hello');
-		}, 1000);
+		}, 500);
 	};
 
 });
