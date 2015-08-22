@@ -55,9 +55,6 @@ tv.controller('SeasonsCtrl', ['$scope', '$http', '$timeout', '$interval', '$root
 
 	};
 
-
-
-
 	var evaluate = function(){
 		if (counter === 0) {
 			$interval.cancel(promise);

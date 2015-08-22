@@ -29,17 +29,16 @@
 <div ng-hide='nyan'> 
 
 
-<div class="container">
+<div class="container-fluid">
 
-<div class="row teal lighten-2">
-	<p>
-		
-	</p>
-</div>
-
-<div class="row" id='content-container'>
+<div class="row teal" id='content-container'>
+		<div class="card-panel teal lighten-1 z-depth-2">
+			<div class="center" id='search-board'>
+				Searching for: {{search}}
+			</div>
+		</div>
 	<div class="col s3 teal" id="season-container">
-		<table class="hoverable">
+		<table class="hoverable teal lighten-1 z-depth-2" id="season-table">
 			<tbody>
 				<tr ng-repeat="(k,v) in json" > 
 					<td class="seasons" ng-click="setSeason(k)">Season: {{(k-0)+1}}</td>
@@ -49,11 +48,12 @@
 	</div>
 
 	<div class="col s9 teal" id = 'episode-container'>
+
 		<ul ng-repeat="episode in currentSeason" ng-controller = 'TweetCtrl as tweet'>
 			<div class="card">
 				<div class="card-content">
 					<div class="row">
-						<div class="col s5">
+						<div class="col s8">
 							<span class="card-title activator grey-text text-darken-4";>Episode: {{episode.number}} | "{{episode.name}}"  
 							<br>
 							Airdate: {{episode.airdate | date}}

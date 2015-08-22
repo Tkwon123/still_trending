@@ -40,14 +40,26 @@
     width: 400px;
 }
 
+#search-board{
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 #episode-header {
     font-size: 100%;
+}
+
+#season-table {
 }
 
 #season-container{
     height: inherit;
     color: white;
     font-weight: bold;
+    padding-top: 10px;
 }
 
 body {
@@ -56,4 +68,12 @@ body {
 
 .row {
     height: 100%;
+}
+
+#content-container{
+    padding: 30px;
+}
+
+.card-title {
+    font-size: 80%;
 }
