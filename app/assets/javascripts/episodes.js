@@ -1,12 +1,6 @@
 var tv = angular.module('tv', []);
 
-/*$(function(){
-	$('#nyan').click(function(){
-		$('body').addClass('nyan');
-	});
-});*/
-
-tv.filter('clean', [function(){
+tv.filter('clean', function(){
 	return function(input){
 
 		if (typeof input == 'string') {
@@ -15,10 +9,10 @@ tv.filter('clean', [function(){
 			console.log(input);
 		}
 	};
-}]);
+});
 
-tv.controller('SeasonsCtrl', [function($scope, $http, $timeout, $interval, $rootScope){
-
+tv.controller('SeasonsCtrl', function($scope, $http, $timeout, $interval, $rootScope){
+	this.$inject = ['$scope', '$http', '$timeout', '$interval', '$rootScope'];
 	//NYAN!!!
 	$scope.nyan = false;
 	$scope.changeNyan =  function(){
@@ -101,9 +95,10 @@ tv.controller('SeasonsCtrl', [function($scope, $http, $timeout, $interval, $root
 		}, 500);
 	};
 
-}]);
+});
 
-tv.controller('TweetCtrl', [function($scope,$http,$timeout, $rootScope){
+tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
+	this.$inject = ['$scope', '$http', '$timeout', '$rootScope'];
 
 	$scope.search = {data:'hi'};
 	$scope.tweets = [];
@@ -150,5 +145,5 @@ tv.controller('TweetCtrl', [function($scope,$http,$timeout, $rootScope){
 	$scope.setTweets = function(){
 		$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);
 	};
-}]);
+});
 
