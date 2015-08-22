@@ -1,6 +1,6 @@
 
 .nyan {
-	background-image: asset-url('nyan.jpg');
+	background-image: url(nyan.jpg);
     background-size: cover;
     position: fixed;
     top: 0;
