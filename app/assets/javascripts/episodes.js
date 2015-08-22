@@ -16,7 +16,6 @@ tv.controller('SeasonsCtrl', ['$scope', '$http', '$timeout', '$interval', '$root
 	$scope.nyan = false;
 	$scope.changeNyan =  function(){
 		$scope.nyan = $scope.nyan === false ? true: false;
-
 	};
 	$scope.search = '';
 	$scope.json = {};
