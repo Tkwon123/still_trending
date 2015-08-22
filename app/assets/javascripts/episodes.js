@@ -6,7 +6,7 @@ var tv = angular.module('tv', []);
 	});
 });*/
 
-tv.filter('clean', function(){
+tv.filter('clean', [function(){
 	return function(input){
 
 		if (typeof input == 'string') {
@@ -15,10 +15,95 @@ tv.filter('clean', function(){
 			console.log(input);
 		}
 	};
-});
+}]);
+
+tv.controller('SeasonsCtrl', [function($scope, $http, $timeout, $interval, $rootScope){
+
+	//NYAN!!!
+	$scope.nyan = false;
+	$scope.changeNyan =  function(){
+		$scope.nyan = $scope.nyan === false ? true: false;
+
+	};
+	$scope.search = '';
+	$scope.json = {};
+	$scope.currentSeason = {};
+	var userSearch = {};
+
+	$scope.setSearch = function(search){
+		userSearch = search;
+	};
 
 
-tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
+
+	$scope.find_seasons = function(show){
+		$rootScope.show = show.replace(/\s/g, '');
+		$http({
+			method: 'get',
+			url: '/episodes/tv',
+			params: {search: show},
+			timeout: 3000
+		})
+			.success(function(data){
+				$scope.json = data;
+		});
+	};
+
+
+	$scope.setSeason = function(season){
+		$scope.currentSeason = $scope.json[season];
+	};
+
+
+	var evaluate = function(){
+		if (counter === 0) {
+			$interval.cancel(promise);
+			$scope.find_seasons($scope.search);
+			counter = 1;
+		} else {
+			tick();
+		}
+	};
+
+	var tick = function(){
+		counter -= 1;
+		console.log(counter);
+	};
+
+
+	var counter = 1;
+	var counting = false;
+	var promise;
+	
+
+	$scope.setTimer = function(){
+		$scope.stopTimer();
+		promise = $interval(function(){evaluate();}, 500);
+	};
+
+	$scope.stopTimer = function(){
+		$interval.cancel(promise);
+	};
+
+	$scope.timerAction = function(){
+		if (counter === 0) {
+			alert('hello there!');
+		} else {
+			counter = counter--;
+			console.log(counter);
+		}
+	};
+
+
+	$scope.timeout = function(){
+		$timeout(function(){
+			alert('hello');
+		}, 500);
+	};
+
+}]);
+
+tv.controller('TweetCtrl', [function($scope,$http,$timeout, $rootScope){
 
 	$scope.search = {data:'hi'};
 	$scope.tweets = [];
@@ -65,5 +150,5 @@ tv.controller('TweetCtrl', function($scope,$http,$timeout, $rootScope){
 	$scope.setTweets = function(){
 		$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);
 	};
-});
+}]);
 
