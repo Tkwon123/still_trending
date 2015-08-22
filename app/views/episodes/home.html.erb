@@ -2,7 +2,7 @@
 	<div class="nav-wrapper">
 		<a href="#" class="brand-logo left">Still Trending <i class="material-icons left">chat_bubble_outline</i> </a> 
 		<ul id="nav-mobile" class="right">
-			<li><a id='nyan' ng-click='changeNyan()'>TOGGLE NYAN!</a></li>
+			<li><a href='#' id='nyan' ng-click='changeNyan()'>TOGGLE NYAN!</a></li>
 		</ul>
 		
 		<div class="right">
@@ -14,8 +14,8 @@
 				<label for="search-field">
 					<i class="mdi-action-search prefix"></i>
 				</label>
+
 				</div>
-			
 			</form>
 		</div>
 		
@@ -58,25 +58,19 @@
 							Airdate: {{episode.airdate | date}}
 							</span>
 						</div>
-						<div class="col s4">
-
+						<div class="col s4 right">
 							<p ng-hide="tweets.length" ng-click="setEpisode(episode.airdate)" class="right-align">
 								<a class="waves-effect waves-teal btn-flat"> Listen in!  </a><i class="small material-icons">volume_up</i>
 							</p>
-
 							<p ng-show="tweets.length" ng-click="empty_tweets()" class="right-align">
 								<a class="waves-effect waves-teal btn-flat"> Shh...  </a><i class="small material-icons">volume_off</i>
 							</p>			
-
 						</div>
 					</div>
-
-
 				</div>
 				<ul ng-show='tweets.length > 0' class="card-action collection">
 					<li ng-repeat='tweet in tweets' class="collection-item">{{tweet}}</li>
 				</ul>
-
 				<div class="card-reveal" ng-click="test();">
 					<span class="card-title grey-text text-darken-4">Summary<i class="material-icons right">close</i></span>
 						<p ng-if="episode.summary">{{episode.summary | clean }}</p>
