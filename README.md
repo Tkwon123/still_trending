@@ -1,5 +1,6 @@
 #Still Trending
 
+[https://raw.githubusercontent.com/Tkwon123/still_trending/master/app/assets/images/sample_page.png]
 
 ##The Problem: 
 
