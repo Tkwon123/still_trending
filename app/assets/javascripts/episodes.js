@@ -144,7 +144,26 @@ tv.controller('TweetCtrl', ['$scope', '$http', '$timeout', '$rootScope', functio
 		$scope.start_date = date.year + '-' + date.month + '-' + (date.day+1);
 		$scope.end_date = date.year + '-' + date.month + '-' + (date.day+2);
 		$scope.setTweets();
+		/*alert(monthRollover(date.month));*/
 	};
+
+/*	var monthRollover = function(month, day){
+		switch(month){
+		case: 1
+			if day
+		case: 2
+		case: 3
+		case: 4
+		case: 5
+		case: 6
+		case: 7
+		case: 8
+		case: 9
+		case: 10
+		case: 11
+		case: 12
+		}
+	};*/
 
 	$scope.setTweets = function(){
 		$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);

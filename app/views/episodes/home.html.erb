@@ -1,27 +1,24 @@
 <nav class="teal darken-3" id='title'>
 	<div class="nav-wrapper">
-		<a href="#" id='logo' class="brand-logo left"> Still Trending <i class="material-icons right">chat_bubble_outline</i> </a> 
+		<a href="#" id='logo' class="brand-logo left hide-on-small-only"> Still Trending <i class="material-icons right">chat_bubble_outline</i> </a> 
 
-		<ul id="nav-mobile" class="right">
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			<li><a href='#' id='nyan' ng-click='changeNyan()'>TOGGLE NYAN!</a></li>
 		</ul>
 		
-		<div class="right">
+		<ul class="right">
 			<form>
 				<div class="input-field">
-					
-				<input name='search' class="field" id='search-field' type="search" ng-model="search" ng-change="setTimer()" placeholder="Search TV Series">
+				<li><input name='search' class="field" id='search-field' type="search" ng-model="search" ng-change="setTimer()" placeholder="Search TV Series"></li>
 
-				<label for="search-field">
+				<li><label for="search-field">
 					<i class="mdi-action-search prefix"></i>
 				</label>
+				</li>
 
 				</div>
 			</form>
-		</div>
-		
-	
-
+		</ul>
 	</div>	
 </nav>
 
