@@ -137,36 +137,35 @@ tv.controller('TweetCtrl', ['$scope', '$http', '$timeout', '$rootScope', functio
 	$scope.setEpisode = function(airDate){
 		$scope.tweets = ["Loading..."];
 		var date = airDate;
-		//Need to reor <i class="material-icons prefix">account_circle</i>ganize date into YYYY-MM-DD for the Twitter API
+		//Need to reorganize date into YYYY-MM-DD for the Twitter API. We're subtracting a month because JS uses 0-11 month range
+		//meanwhile Twitter's Advanced search 1-12, and it seems most inuitive to allow JS to interpret days natively (i.e. in 
+		//situations where the month rolls over or on leap years.)
 		date = date.split('-');
 		date = {year: parseInt(date[0]), month: parseInt(date[1]), day: parseInt(date[2])};
-		//Setting +1 and +2 days after airdate to show relevent tweets
-		$scope.start_date = date.year + '-' + date.month + '-' + (date.day+1);
-		$scope.end_date = date.year + '-' + date.month + '-' + (date.day+2);
+
+		//The plus option sets the interval for how many days AFTER the show has aired. Grabbing a 24 hour range after the date given.
+		var start = createDay(date.year, date.month-1 , date.day, {plus:1});
+		$scope.start_date = start.getFullYear() + '-' + (start.getMonth()+1) + '-' + start.getDate();
+		alert ($scope.start_date);
+
+		var end = createDay(date.year, date.month-1 , date.day, {plus:2});
+		$scope.end_date = end.getFullYear() + '-' + (end.getMonth()+1) + '-' + end.getDate() ;
+		alert ($scope.end_date);
+
 		$scope.setTweets();
-		/*alert(monthRollover(date.month));*/
 	};
 
-/*	var monthRollover = function(month, day){
-		switch(month){
-		case: 1
-			if day
-		case: 2
-		case: 3
-		case: 4
-		case: 5
-		case: 6
-		case: 7
-		case: 8
-		case: 9
-		case: 10
-		case: 11
-		case: 12
-		}
-	};*/
+	createDay = function(year, month, day, moreDays){
+		var date = new Date(year, month, day);
+		var addedDays = new Date (date.setDate(date.getDate() + moreDays.plus));
+		return addedDays;
+	};
+
+
+	
 
 	$scope.setTweets = function(){
 		$scope.find_tweets($rootScope.show, $scope.start_date, $scope.end_date);
 	};
-}]);
-
+}]
+);
