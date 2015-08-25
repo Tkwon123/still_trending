@@ -115,6 +115,7 @@ tv.controller('TweetCtrl', ['$scope', '$http', '$timeout', '$rootScope', functio
 				$scope.tweets = data;
 				if ($scope.tweets.length) {
 					} else {
+					//Need a reasonble date range wherein people actually tweeted otherwise we get empty results
 					$scope.tweets = ["HM. I'm not sensing any chatter in the 'Twitter-sphere'... Did things even trend back then?"];
 					}
 				})
@@ -146,11 +147,9 @@ tv.controller('TweetCtrl', ['$scope', '$http', '$timeout', '$rootScope', functio
 		//The plus option sets the interval for how many days AFTER the show has aired. Grabbing a 24 hour range after the date given.
 		var start = createDay(date.year, date.month-1 , date.day, {plus:1});
 		$scope.start_date = start.getFullYear() + '-' + (start.getMonth()+1) + '-' + start.getDate();
-		alert ($scope.start_date);
 
 		var end = createDay(date.year, date.month-1 , date.day, {plus:2});
 		$scope.end_date = end.getFullYear() + '-' + (end.getMonth()+1) + '-' + end.getDate() ;
-		alert ($scope.end_date);
 
 		$scope.setTweets();
 	};
