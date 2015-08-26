@@ -2,13 +2,16 @@
 
 ![](https://raw.githubusercontent.com/Tkwon123/still_trending/master/app/assets/images/sample_page.png)
 
+**Still Trending** is retro-active social media platform that helps you keep involved with public conversation days, weeks, or years after the initial TV airing of any show!
+
+
 ##The Problem: 
 
 The abundance of publicly available content has created two primary effects on our experience as consumers: 
 
-On the one hand, social media has reduced the barriers to join in on public conversations, amplifying our ability to feel immediately connected and communicate across the globe after any event.
+On the one hand, social media has reduced the barriers to join in on public conversations, thereby amplifying our ability to immediately connect and communicate across the globe after any event.
 
-Conversely, this overflow of content continously competes for our attention, forcing individuals to ceaselessly struggle with queues of "to-dos", "to reads", and "to watch." 
+Somewhat conversely, this overflow of content continously competes for our attention, forcing individuals to ceaselessly struggle with endless "to-dos", "to reads", and "to watch" lists.
 
 Herein lies the problem: while content is discussed in real-time, we are inevitably caught in our own schedules and lag behind public conversations. 
 
@@ -29,6 +32,13 @@ But don't go listening in on anything you havent seen though! That would be a pr
 
 **Still Trending** leverages AngularJS on top of Rails and searches [TV Maze's RESTful API](http://www.tvmaze.com/api) provides the mostly-comprehensive catalog of TV shows and episode. 
 
+Use the search bar in the upper right to find your favorite show and drill down to the episodes. Select "listen into" when you're ready to hear the conversation and voila! there you are, whenever that may be.
+
+A bunch of handy features are already built into the app:
+	- Modern styling and wizz bang effects from [Materialze](http://materializecss.com/)
+	- Lazy search to automatically detect completion of search results
+	- Mobile optimization to resize on small devices
+
 Note that we *don't* use [Twitter's RESTful API](https://twitter.com/search-advanced?lang=en). Twitter's streaming API service only provides an index of streaming days for up to seven ('7') days. Instead, we use their advanced search feature which contains an index of the entire Twitter-world, and use [Mechanize](https://github.com/sparklemotion/mechanize) to scrape the search results. 
 
 Running locally is easy. In the console:
@@ -40,6 +50,7 @@ bundle update
 bundle install
 rails server
 ```
+
 Navigate to localhost:3000 to find the homepage and use the search bar to find your desired show. 
 
 ##Noted Issues and Future Features:
